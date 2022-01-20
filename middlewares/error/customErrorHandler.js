@@ -5,7 +5,7 @@ const customErrorHandler = async (error, req, res, next) => {
     if (error.name === 'SyntaxError') {
         customError = new CustomError('Unexpected syntax error!', 400);
     }
-    if (error.name === "ValidationError") {
+    if (error.name === 'ValidationError') {
         let splitted = error.message.split(":")
         if (splitted && splitted[3]) {
             customError = new CustomError((error.message.split(":")[2] || "").split(",")
@@ -15,7 +15,9 @@ const customErrorHandler = async (error, req, res, next) => {
                 [(error.message.split(":")[2] || "").split(",").length - 1].trim(), 400);
         }
     }
-
+    if (error.name === 'TypeError') {
+        customError = new CustomError('Unexpected type error!', 400);
+    }
     res.status(customError.status || 500).json({
         success: false,
         message: customError.message

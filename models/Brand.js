@@ -18,4 +18,4 @@ const BrandSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Brand', BrandSchema);
+module.exports = mongoose.model('brand', BrandSchema);

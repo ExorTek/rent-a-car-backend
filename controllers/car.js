@@ -5,10 +5,17 @@ const createCar = expressAsyncHandler(async (req, res, next) => {
     const car = await Car.create({
         ...req.body
     });
+    const createdCar = await Car.findById(car._id).populate({
+        path: 'category',
+        select: 'categoryName'
+    }).populate({
+        path: 'brand',
+        select: 'brandName'
+    });
     res.status(200).json({
         success: true,
         message: 'Car Creation Successfully!',
-        data: car
+        data: createdCar
     });
 });
 const getAllCar = expressAsyncHandler(async (req, res, next) => {
