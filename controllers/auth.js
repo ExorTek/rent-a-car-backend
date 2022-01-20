@@ -17,6 +17,7 @@ const register = expressAsyncHandler(async (req, res, next) => {
     });
     sendJwtToClient(user, res);
 });
+
 const login = expressAsyncHandler(async (req, res, next) => {
     const {username, password} = req.body;
     if (!validateUserInputLogin) {
