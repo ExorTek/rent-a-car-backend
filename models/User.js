@@ -36,7 +36,7 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    profile_image: {
+    profileImage: {
         type: String,
         default: 'default.jpg'
     },
